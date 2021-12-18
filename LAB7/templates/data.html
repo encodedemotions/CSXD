@@ -1,0 +1,10 @@
+<body>
+<h1>{{ data_name }}</h1>
+<a href="{% url 'home' %}">Go back home</a>
+<a href="{% url 'insert_data' %}">Insert data</a>
+<a href="{% url 'insert_private_data' %}">Insert private data</a>
+{% for d in data %}
+    <h1>{{ d.data }}</h1>
+{% endfor %}
+
+</body>

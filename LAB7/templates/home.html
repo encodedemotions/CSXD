@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h2>This is home page for {{ user.username }} </h2>
+        {% if user.is_student %}
+        <h2>You can view data, but not private data</h2>
+        {% endif %}
+        {% if user.is_lecturer %}
+        <h2>You can view data, and private data</h2>
+        {% endif %}
+        <h4><a href="{% url 'view_data' %}">View Data</a></h4>
+        <h4><a href="{% url 'view_private_data' %}">View Private Data</a></h4>
+        <h4><a href="{% url 'logout' %}">Logout</a></h4>
+    {% else %}
+        <h2>This is home page, You are not authenticated </h2>
+        <h2>View data and private data are not available users that are not logged in. </h2>
+        <h2>It will show a 404 error</h2>
+        <h4><a href="{% url 'view_data' %}">View Data</a></h4>
+        <h4><a href="{% url 'view_private_data' %}">View Private Data</a></h4>
+        <h3><a href="{% url 'StudentSignup' %}">Signup as student</a></h3>
+        <h3><a href="{% url 'LecturerSignup' %}">Signup as teacher</a></h3>
+        <h3><a href="{% url 'login' %}">Login </a></h3>
+    {% endif %}
+{% endblock %}
